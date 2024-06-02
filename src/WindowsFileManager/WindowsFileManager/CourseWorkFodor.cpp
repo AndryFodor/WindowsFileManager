@@ -26,10 +26,26 @@ void deleteFile(const fs::path& path)
 	_getch();
 }
 
+void deleteDirectory(const fs::path& path)
+{
+	if (fs::exists(path) && fs::is_directory(path))
+	{
+		fs::remove_all(path);
+		cout << "Directory deleted successfully." << endl;
+	}
+	else
+	{
+		cout << "Directory not found." << endl;
+	}
+
+	_getch();
+}
+
 int main() {
 	string testPath7 = "D://KZP2";
 	string testPath8 = "D://index2.js";
 	deleteFile(testPath8);
+	deleteDirectory(testPath7);
 
 	return 0;
 }
