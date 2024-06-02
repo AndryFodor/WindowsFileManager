@@ -1,0 +1,12 @@
+# Visual Studio specific files
+.vs/
+*.vcxproj.user
+*.opendb
+*.db
+*.log
+*.obj
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.tlog
