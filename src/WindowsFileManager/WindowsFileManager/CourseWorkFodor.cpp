@@ -11,6 +11,21 @@
 using namespace std;
 namespace fs = std::filesystem;
 
+void moveFile(const fs::path& sourceFilePath, const fs::path& destinationFilePath)
+{
+	try
+	{
+		fs::rename(sourceFilePath, destinationFilePath);
+		cout << "File moved successfully." << endl;
+	}
+	catch (const fs::filesystem_error& error)
+	{
+		cout << "Failed to move the file: " << error.what() << endl;
+	}
+
+	_getch();
+}
+
 int main() {
 
 
