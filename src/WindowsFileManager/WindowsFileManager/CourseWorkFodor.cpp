@@ -26,6 +26,21 @@ void moveFile(const fs::path& sourceFilePath, const fs::path& destinationFilePat
 	_getch();
 }
 
+void moveDirectory(const fs::path& sourceDirPath, const fs::path& destinationDirPath)
+{
+	try
+	{
+		fs::rename(sourceDirPath, destinationDirPath);
+		cout << "Directory moved successfully." << endl;
+	}
+	catch (const fs::filesystem_error& error)
+	{
+		cout << "Failed to move the directory: " << error.what() << endl;
+	}
+
+	_getch();
+}
+
 int main() {
 
 
