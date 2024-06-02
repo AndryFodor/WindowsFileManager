@@ -24,9 +24,32 @@ void createDirectory(const fs::path& path)
 	_getch();
 }
 
+void createFile(const fs::path& path)
+{
+	if (fs::exists(path)) {
+		cout << "File already exists." << endl;
+		_getch();
+		return;
+	}
+
+	ofstream file(path.string());
+	if (file)
+	{
+		cout << "File created successfully." << endl;
+	}
+	else
+	{
+		cout << "Failed to create file." << endl;
+	}
+	file.close();
+
+	_getch();
+}
+
 int main() {
 	string testPath9 = "D://KZP2";
-	string testPath10 = "D://index3.js";
+	string testPath10 = "D://index2.js";
 	createDirectory(testPath9);
+	createFile(testPath10);
 	return 0;
 }
