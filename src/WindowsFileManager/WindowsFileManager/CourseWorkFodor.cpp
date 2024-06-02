@@ -11,6 +11,7 @@
 using namespace std;
 namespace fs = std::filesystem;
 
+
 void renameFile(const fs::path& filePath, const  string& newFileName)
 {
 	if (fs::exists(filePath) && fs::is_regular_file(filePath))
@@ -62,18 +63,39 @@ void renameDirectory(const fs::path& dirPath, const string& newDirName)
 	else
 	{
 		cout << "Invalid directory path." << endl;
+
+void copyFile(const fs::path& sourceFilePath, const fs::path& destinationFilePath)
+{
+	try
+	{
+		fs::copy(sourceFilePath, destinationFilePath);
+		cout << "File copied successfully." << endl;
+	}
+	catch (const fs::filesystem_error& error)
+	{
+		cout << "Failed to copy the file: " << error.what() << endl;
+	}
+
+	_getch();
+}
+
+void copyDirectory(const fs::path& sourceDirPath, const fs::path& destinationDirPath)
+{
+	try
+	{
+		fs::copy(sourceDirPath, destinationDirPath, fs::copy_options::recursive);
+		cout << "Directory copied successfully." << endl;
+	}
+	catch (const fs::filesystem_error& error)
+	{
+		cout << "Failed to copy the directory: " << error.what() << endl;
+
 	}
 
 	_getch();
 }
 
 int main() {
-	string testPath20 = "D://KZP2";
-	string testPath21 = "D://index2.js";
-	string testPath22 = "D://noFile.txt";
-
-	renameFile(testPath21, "index3.js");
-	renameDirectory(testPath20, "KZP3");
 
 
 	return 0;
