@@ -130,6 +130,7 @@ void deleteDirectory(const fs::path& path)
 
 void createDirectory(const fs::path& path)
 {
+	if (fs::exists(path.parent_path())) {
 	if (fs::create_directory(path))
 	{
 		cout << "Directory created successfully." << endl;
@@ -137,6 +138,10 @@ void createDirectory(const fs::path& path)
 	else
 	{
 		cout << "Failed to create directory." << endl;
+	}
+	}
+	else {
+		cout << "Invalid path" << endl;
 	}
 
 	_getch();
