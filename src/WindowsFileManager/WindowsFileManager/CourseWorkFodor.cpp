@@ -10,7 +10,25 @@
 
 using namespace std;
 namespace fs = std::filesystem;
+void createDirectory(const fs::path& path)
+{
+	if (fs::create_directory(path))
+	{
+		cout << "Directory created successfully." << endl;
+	}
+	else
+	{
+		cout << "Failed to create directory." << endl;
+	}
 
+
+void createFile(const fs::path& path)
+{
+	if (fs::exists(path)) {
+		cout << "File already exists." << endl;
+		_getch();
+		return;
+	}
 
 void deleteFile(const fs::path& path)
 {
@@ -42,11 +60,20 @@ void deleteDirectory(const fs::path& path)
 	_getch();
 }
 
-int main() {
-	string testPath7 = "D://KZP2";
-	string testPath8 = "D://index2.js";
-	deleteFile(testPath8);
-	deleteDirectory(testPath7);
+
+
+	ofstream file(path.string());
+	if (file)
+	{
+		cout << "File created successfully." << endl;
+	}
+	else
+	{
+		cout << "Failed to create file." << endl;
+	}
+	file.close();
+
+
 
 
 void displayFileProperties(const fs::path& path)
@@ -82,13 +109,7 @@ void displayFileProperties(const fs::path& path)
 }
 
 
-int main() {
-	string testPath1 = "D://KZP/kzpLab1.docx";
-	string testPath2 = "D://index.js";
-	string testPath3 = "D://noFile.txt";
-	displayFileProperties(testPath3);
-	return 0;
-}
+
 
 void displayDirectoryContents(const fs::path& path)
 {
