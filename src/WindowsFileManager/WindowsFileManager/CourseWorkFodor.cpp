@@ -42,12 +42,38 @@ void renameFile(const fs::path& filePath, const  string& newFileName)
 	_getch();
 }
 
+void renameDirectory(const fs::path& dirPath, const string& newDirName)
+{
+	if (fs::exists(dirPath) && fs::is_directory(dirPath))
+	{
+		fs::path parentPath = dirPath.parent_path();
+		fs::path newDirPath = parentPath / newDirName;
+
+		try
+		{
+			fs::rename(dirPath, newDirPath);
+			cout << "Directory renamed successfully." << endl;
+		}
+		catch (const fs::filesystem_error& error)
+		{
+			cout << "Failed to rename the directory: " << error.what() << endl;
+		}
+	}
+	else
+	{
+		cout << "Invalid directory path." << endl;
+	}
+
+	_getch();
+}
+
 int main() {
 	string testPath20 = "D://KZP2";
 	string testPath21 = "D://index2.js";
 	string testPath22 = "D://noFile.txt";
 
 	renameFile(testPath21, "index3.js");
+	renameDirectory(testPath20, "KZP3");
 
 
 	return 0;
